@@ -1,5 +1,8 @@
 package net.haxzee.cloudrank;
 
+import lombok.Getter;
+import net.haxzee.cloudrank.commands.RankCommand;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 
 /**
@@ -8,13 +11,17 @@ import net.md_5.bungee.api.plugin.Plugin;
  */
 
 public class RankService extends Plugin {
+    @Getter
     private static RankService instance;
+    @Getter
     private static String prefix;
 
     @Override
     public void onEnable() {
         instance = this;
-        prefix = "";
+        prefix = "§cRank §8× §7";
+
+        ProxyServer.getInstance().getPluginManager().registerCommand(this, new RankCommand("rank"));
     }
 
     @Override
